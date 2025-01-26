@@ -212,6 +212,120 @@ Fast-forward
  index.html |  3 ++-
  2 files changed, 53 insertions(+), 2 deletions(-)
 ```
+## Undoing in Git
+If you added or committed changed by error, you can undo them by the `git reset` command
+### Undoing `git add`
+
+We will add a line in the index.html
+
+```html
+<div>Git !! You need to track me too !</div>
+<p>Hello World !</p>
+<p>A merge conflict is created because of me :D</p>
+<p>Oops ! This should not be here !</p>
+```
+
+And then add it and unstage what we added to the stage.
+```
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git status
+On branch quick-test
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git add index.html
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git status
+On branch quick-test
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   index.html
+
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git reset
+Unstaged changes after reset:
+M       index.html
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git status
+On branch quick-test
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+### Undoing `git add` & `git commit`
+
+`HEAD` is a pointer to the last commit, we basically say to uncommit and unstage the last commit
+```shell
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git add index.html
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git commit -m "Added a line in index.html"
+[quick-test 2cd569c] Added a line in index.html
+ 1 file changed, 1 insertion(+)
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git status
+On branch quick-test
+nothing to commit, working tree clean
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git reset HEAD~1
+Unstaged changes after reset:
+M       index.html
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git status
+On branch quick-test
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git diff
+diff --git a/index.html b/index.html
+index 1d118e5..453d197 100644
+--- a/index.html
++++ b/index.html
+@@ -1,3 +1,4 @@
+ <div>Git !! You need to track me too !</div>
+ <p>Hello World !</p>
+ <p>A merge conflict is created because of me :D</p>
++<p>Oops ! This should not be here !</p>
+\ No newline at end of file
+```
+If you want to uncommit a specific commit, you need its hash, that you get by the command: `git log` that give you a history of your commits
+```shell
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git log
+Author: ILyass-Lr <lirmaqui.ilyass@gmail.com>
+Date:   Sun Jan 26 16:20:21 2025 +0100
+
+    Deleted the merge conflict line
+
+commit 0a209e8a2a47172f016e1d2338ebbd29e713440d
+Author: ILyass-Lr <lirmaqui.ilyass@gmail.com>
+Date:   Sun Jan 26 16:16:31 2025 +0100
+
+    Added a line in index.html
+
+commit 76d640690c07c8eb5ea13eee87273c59b18607c9 (origin/main, origin/HEAD)
+Author: ILyass-Lr <lirmaqui.ilyass@gmail.com>
+Date:   Sun Jan 26 15:39:33 2025 +0100
+
+    Added Images and fixed Orthograph
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git reset --hard 0a209e8a2a47172f016e1d2338ebbd29e713440d      
+HEAD is now at 0a209e8 Added a line in index.html
+```
+The `git reset —hard hash` command not only uncommit that specific commit but because of the —hard flag it also undo the changes:
+
+**Before:**
+```html
+<div>Git !! You need to track me too !</div>
+<p>Hello World !</p>
+<p>Oops ! This should not be here !</p>
+```
+**After:**
+```html
+<div>Git !! You need to track me too !</div>
+<p>Hello World !</p>
+<p>A merge conflict is created because of me :D</p>
+<p>Oops ! This should not be here !</p>
+```
+
+
 
 
 
