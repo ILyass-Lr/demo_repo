@@ -103,7 +103,7 @@ Changes not staged for commit:
 
 We commit our changes by the `git commit -m "Why you committed" - m "More details".` Till now we have committed the changes in our local machine.
 
-To put in GitHub we run the: `git push origin main` command. 
+To put it in GitHub we run the: `git push origin main` command. 
 
 - origin: specifies the location of the repository
 - main: is the branch we push into.
@@ -113,7 +113,7 @@ To put in GitHub we run the: `git push origin main` command.
 - `git merge origin/main`: After fetching, merge the changes into your local main branch.
 
 ## Git  Branching
-Branching is useful when you want to add some features or fix a bug that your fear is going to break your code, and thus creating a branch separated from the master branch is the way to go, the commits made on a branch doesn’t affect other branches, When you’re sure about the code you can merge with the master branch or any branch you like
+Branching is useful when you want to add some features or fix a bugs that your fear is going to break your code, and thus creating a branch separated from the master branch is the way to go, the commits made on a branch doesn’t affect other branches, When you’re sure about the code, you can merge with the master branch or any branch you like.
 To list available branches, run: `git branch`
 
 ```bash
@@ -142,7 +142,7 @@ PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git branch
 * main
 ```
 
-After changing to the desired branch, you can addt he changes you want, track them by `git add file_name`, and commit them by `git commit -m "a message"`.
+After changing to the desired branch, you can add the changes you want, track them by `git add file_name`, and commit them by `git commit -m "a message"`.
 
 
 
