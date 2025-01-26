@@ -103,7 +103,7 @@ Changes not staged for commit:
 
 We commit our changes by the `git commit -m "Why you committed" - m "More details".` Till now we have committed the changes in our local machine.
 
-To put in GitHub we run the: `git push origin main` command. 
+To put it in GitHub we run the: `git push origin main` command. 
 
 - origin: specifies the location of the repository
 - main: is the branch we push into.
@@ -113,7 +113,7 @@ To put in GitHub we run the: `git push origin main` command.
 - `git merge origin/main`: After fetching, merge the changes into your local main branch.
 
 ## Git  Branching
-Branching is useful when you want to add some features or fix a bug that your fear is going to break your code, and thus creating a branch separated from the master branch is the way to go, the commits made on a branch doesn’t affect other branches, When you’re sure about the code you can merge with the master branch or any branch you like
+Branching is useful when you want to add some features or fix a bugs that your fear is going to break your code, and thus creating a branch separated from the master branch is the way to go, the commits made on a branch doesn’t affect other branches, When you’re sure about the code, you can merge with the master branch or any branch you like.
 To list available branches, run: `git branch`
 
 ```bash
@@ -142,9 +142,59 @@ PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git branch
 * main
 ```
 
-After changing to the desired branch, you can addt he changes you want, track them by `git add file_name`, and commit them by `git commit -m "a message"`.
+If you want to see the difference between two branches, you can go back to the main branch and run: `git diff feature-readme-instructions`
+
+If you change back to the main branch you won’t find the changes made in the feature-readme-instructions because the branches are separated. Now to merge the changes you have two option:
+
+- Switch to the main branch, and the run: `git merge feature-readme-instructions`.
+- Switch to the feature-readme-instructions branch, push the changes to GitHub: `git push -u origin feature-readme-instructions`, and then make a pull request.
+    
+For the second option On GitHub: Click on Compare & pull request
 
 
+
+You can check all the comment related to your PR, the commits on that branch, and the changes compared to the main branch
+
+
+
+You can now merge the branch if you are the owner of the main branch
+
+
+
+But if you changed to the main branch locally, you won’t find the changes there because they are on GitHub. You need to run git pull (without the origin main if the upstream was already set)
+
+In many Case when you merge branches, you won’t be using the one you just merged and this you can delete it by: git branch -d branchName
+```
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git branch -d feature-readme-instructions
+Deleted branch feature-readme-instructions (was 6bc10d0).
+```
+### Merge Conflicts
+When there there are many branches being merged to a master branch, Git sometimes doesn’t know which code to keep and which to discard, and create a merge conflict, we are going to simulate this, and see how to deal with it.
+
+Firstly, we create a new branch called *quick-test* by `git checkout -b quick-branch`, we modify the index.html file and we track and commit the changes at the same time by the command: `git commit -am “Added Hello World”`
+```html
+<div>Git !! You need to track me too !</div>
+<p>Hello World !</p>
+```
+Note that this command works only for modified files !
+```
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git commit -am "Added Hello World!"
+[quick-test 035e060] Added Hello World!
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+ ```
+We’re going back to the main branch to add a second line there also that will provoque the merge conflict, the we will add and commit the changes to the main branch.
+```html
+<div>Git !! You need to track me too !</div>
+<p>A merge conflict is created because of me :D</p>
+```
+When we try to merge now, we get a merge conflict
+```
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git merge main
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+```
+You can handle the conflicts on the termina or in VS Code by either deleting one of the lines, or adding both of them
 
 
 
