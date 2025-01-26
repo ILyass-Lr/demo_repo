@@ -151,15 +151,19 @@ If you change back to the main branch you won’t find the changes made in the f
     
 For the second option On GitHub: Click on Compare & pull request
 
+![image](https://github.com/user-attachments/assets/0447cfdb-8c61-49b1-a051-17a5664be51c)
 
+Create a pull request
+
+![image](https://github.com/user-attachments/assets/1b8089f6-0494-46e8-ab0a-dbfc3b564e0e)
 
 You can check all the comment related to your PR, the commits on that branch, and the changes compared to the main branch
 
-
+![image](https://github.com/user-attachments/assets/3160de0f-0ff2-419b-ad5a-64ffc99b560f)
 
 You can now merge the branch if you are the owner of the main branch
 
-
+![image](https://github.com/user-attachments/assets/94b9a6fb-041b-4027-b5eb-a0df19f5cc8f)
 
 But if you changed to the main branch locally, you won’t find the changes there because they are on GitHub. You need to run git pull (without the origin main if the upstream was already set)
 
@@ -182,7 +186,7 @@ PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git commit -am "Added H
 [quick-test 035e060] Added Hello World!
  1 file changed, 2 insertions(+), 1 deletion(-)
  ```
-We’re going back to the main branch to add a second line there also that will provoque the merge conflict, the we will add and commit the changes to the main branch.
+We’re going back to the main branch to add a second line there also that will provoke the merge conflict, then we will add and commit the changes to the main branch.
 ```html
 <div>Git !! You need to track me too !</div>
 <p>A merge conflict is created because of me :D</p>
@@ -194,7 +198,21 @@ Auto-merging index.html
 CONFLICT (content): Merge conflict in index.html
 Automatic merge failed; fix conflicts and then commit the result.
 ```
-You can handle the conflicts on the termina or in VS Code by either deleting one of the lines, or adding both of them
+You can handle the conflicts on the terminal or in VS Code by either deleting one of the lines, or adding both of them
+
+![image](https://github.com/user-attachments/assets/caa303fc-6790-47d0-84e0-46e9d1b47a15)
+
+After handling the conflict you need to add and commit again before merging
+
+```
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git merge quick-test
+Updating 621d173..69da967
+Fast-forward
+ README.md  | 52 +++++++++++++++++++++++++++++++++++++++++++++++++++-
+ index.html |  3 ++-
+ 2 files changed, 53 insertions(+), 2 deletions(-)
+```
+
 
 
 
