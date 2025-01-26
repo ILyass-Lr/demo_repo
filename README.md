@@ -108,6 +108,43 @@ To put in GitHub we run the: `git push origin main` command.
 - origin: specifies the location of the repository
 - main: is the branch we push into.
 
+⚠ *Note:* Before making changes to your code, always make sure that you are making changes to the last version, you could pull the last changes from GitHub by the command: `git pull origin main` which combine two commands:
+- `git fetch origin` : This will download the changes from the remote repository but will not merge them into your local branch yet.
+- `git merge origin/main`: After fetching, merge the changes into your local main branch.
+
+## Git  Branching
+Branching is useful when you want to add some features or fix a bug that your fear is going to break your code, and thus creating a branch separated from the master branch is the way to go, the commits made on a branch doesn’t affect other branches, When you’re sure about the code you can merge with the master branch or any branch you like
+To list available branches, run: `git branch`
+
+```bash
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git branch
+* main
+```
+
+To create a new branch do: `git checkout -b feature-readme-instructions` with the name of the branch being *feature-readme-instructions*
+
+```bash
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git checkout -b feature-readme-instructions
+Switched to a new branch 'feature-readme-instructions'
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git branch
+* feature-readme-instructions
+  main
+```
+
+To switch between branches, you can use `git checkout branchName`
+
+```bash
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\lenovo\Desktop\Projects\Learn_git\demo_repo> git branch
+  feature-readme-instructions
+* main
+```
+
+After changing to the desired branch, you can addt he changes you want, track them by `git add file_name`, and commit them by `git commit -m "a message"`.
+
+
 
 
 
